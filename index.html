@@ -43,6 +43,578 @@
 			このツールは自己責任で使用してください。<br/>
 			このツールを使用してデータが破損しても責任は負いません。
 		</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>どうぶつの森セーブエディダー(日本語版)<title>
+	<link rel="shortcut icon" href="https://www.marcrobledo.com/acnl-editor/resources/favicon.png"/>
+	<meta http-equiv="content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="どうぶつの森のセーブエディタ。 これはあなたがあなたの町、アイテム、村人などを編集することが出来ます！そして日本人用に日本語にしました！/>
+	<meta name="keywords" content="animal, crossing, new, leaf, save, editor, ram, town, pockets, items, hack, exploit"/>
+	<link type="text/css" rel="stylesheet" href="https://www.marcrobledo.com/acnl-editor/resources/acnl_editor.css" media="all"/>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/checksum.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/patterns.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/data_types.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/items.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/buildings.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/villagers.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/libraries.js"></script>
+	<script type="text/javascript" src="https://www.marcrobledo.com/acnl-editor/js/editor_garden.js"></script>
+</head>
+<body>
+
+
+<div id="home">
+	<div class="title">
+		<span class="logo"></span>
+		<h1>とうぶつの森セーブエディダー(日本語版)</h1>
+		<div class="author">
+			by <a href="https://aswefpkeg.github.io/mrfpage/" target="_blank">MRF</a> <span class="last-update">(最終更新日:2022年2月28日)</span>
+		</div>
+
+		<div id="help">
+			<a href="help.html" target="_blank">説明</a> | 
+			<a href="help.html#Homebrew" target="_blank">使い方</a> | 
+			<a href="https://github.com/marcrobledo/acnl-editor/releases">ダウンロード(英語版)</a> | 
+			<a href="help.html#FAQ" target="_blank">質問</a>
+		</div>
+	</div>
+
+	<div id="blocks">
+		<div id="contribute"><a href="https://www.paypal.me/marcrobledo" target="_blank" rel="nofollow"><span>お気軽に寄付してください！</span><span class="donate"><span class="sprite heart"></span>寄付する</span></a></div>
+
+		<div class="block block-warning center open" id="block-warning">
+			このツールは自己責任で使用してください。<br/>
+			このツールを使用してデータが破損しても責任は負いません。
+		</div>
+
+		<div class="block">
+			<label for="lang-selector">アイテムの言語選択:</label> <span id="lang-flag" class="sprite flag flag-en"></span>
+			<select onchange="setCookie('lang',this.selectedIndex); updateLangIcon(this.selectedIndex)" id="lang-selector">
+				<option value="0" selected="selected">English</option>
+				<option value="enu">English (UK)</option>
+				<option value="fr">Français</option>
+				<option value="de">Deutsch</option>
+				<option value="it">Italiano</option>
+				<option value="es">Español</option>
+				<option value="jp">日本語(意味がありません)</option>
+				<option value="kr">Korean</option>
+			</select>
+
+			<hr/>
+			<span id="loading">エディダーをロードしています。少々お待ちください...</span>
+			<form id="loadform" style="display:none">
+				<u>garden.dat</u>または<u>garden_plus.dat</u>ファイルを選択:<br/>
+				<input type="file" accept=".dat" onchange="loadSavegameFromFile(this.files[0])"/>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div id="header">
+
+	<div id="itemsribbon">
+		<input type="text" id="search-input" onkeyup="searchItem(this.value)" onfocus="showSearchResults();" placeholder="Search item..." />
+		<ul id="search-results"></ul>
+		<label for="items">Current item:</label> <select id="items" onchange="buildFlagsSelects(0,0);"><option value="32766" id="item_32766">-</option><option value="32764" id="item_32764">- (occupied room tile) -</option><option value="32766" id="item_unk">unknown item</option></select>
+		<label for="flag1">Flag 1:</label>
+		<input type="text" id="flag1" disabled="disabled" length="2" oninput="cleanFlagInput(1)" maxlength="2"/>
+		<select id="select-flag1" onchange="setFlag(1, parseInt(this.value))">
+			<option value="-1">custom</option>
+			<option value="0" selected="selected">none</option>
+		</select>
+		<label for="flag2">Flag 2:</label>
+		<input type="text" id="flag2" disabled="disabled" length="2" oninput="cleanFlagInput(2)" maxlength="2" />
+		<select id="select-flag2" onchange="setFlag(2,parseInt(this.value))">
+			<option value="-1">custom</option>
+			<option value="0" selected="selected">none</option>
+		</select>
+	</div>
+
+	<span class="logo"></span>
+	<div id="tab-selector">
+		<span class="active">Map</span>
+		<span>Players</span>
+		<span>Island</span>
+		<span>Villagers</span>
+		<span>Shops</span>
+		<span>Other</span>
+	</div>
+	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span> Save changes</button>
+</div>
+
+
+
+<form id="file-form" class="hidden"><input type="file" id="file-load" onchange="tempFile=new MarcFile(this.files[0], tempFileLoadFunction), el('file-form').reset();"/></form>
+
+
+
+<div id="debug"><div id="debug-name"></div><div id="debug-hex"></div></div>
+
+<div id="editor" style="display:none">
+
+
+
+
+<div id="tab-map">
+	<div style="float:right;width:360px">
+		<h3 class="no-separation">Buildings</h3>
+		<ul id="buildings" class="building-list"></ul>
+		<div class="text-center"><button onclick="addBuilding()">Add building</button></div>
+	</div>
+	<div id="map-map" class="map"></div>
+
+	<br style="clear:both; display:block"/>
+	Options:
+	<button onclick="fillAll()">Fill all</button>
+	<button onclick="removeAll()">Remove all</button>
+	&nbsp;&nbsp;&nbsp;
+	<button onclick="MarcDialogs.open('maintenance')">Maintenance</button>
+	&nbsp;&nbsp;&nbsp;
+	<button onclick="tempFileLoadFunction=importMap; el('file-load').accept='.dat';el('file-load').click()">Import map</button>
+
+	<div class="row">
+		<div class="column column-5">
+			<h3>Acres</h3>
+			<div id="map-acres"></div>
+		</div>
+
+		<div class="column column-5">
+			<h3>Grass</h3>
+			<div id="grass-quads"></div>
+			<label>Pencil size: <select id="select-grass-pencil-size" onchange="grassPencilSize=this.selectedIndex">
+				<option>1</option>
+				<option>2</option>
+				<option selected>3</option>
+				<option>4</option>
+			</select></label>
+			<label>Intensity: <select id="select-grass-intensity" onchange="grassPencilIntensity=((this.selectedIndex+1)*32)-1">
+				<option value="32">Min</option>
+				<option value="64">2</option>
+				<option value="96">3</option>
+				<option value="128">4</option>
+				<option value="160">5</option>
+				<option value="192">6</option>
+				<option value="224">7</option>
+				<option value="255" selected>Max</option>
+			</select></label>
+		</div>
+	</div>
+
+
+</div>
+
+<div id="tab-players" style="display:none" class="with-sticky-ribbon">
+	<div id="player-selector">
+		<input type="image" class="button" src="" id="player0-pic" onclick="selectPlayer(0)"/>
+		<input type="image" class="button" src="" id="player1-pic" onclick="selectPlayer(1)"/>
+		<input type="image" class="button" src="" id="player2-pic" onclick="selectPlayer(2)"/>
+		<input type="image" class="button" src="" id="player3-pic" onclick="selectPlayer(3)"/>
+	</div>
+
+	<div class="row">
+		<div class="column column-4">
+			<h3 class="no-separation">Player info</h3>
+			<table>
+				<tr>
+					<td><label for="player-name">Name/SID:</label></td>
+					<td><input type="text" id="player-name" maxlength="9" onchange="currentPlayer.setName(this.value)" /> <span id="player-id" class="mono"></span></td>
+				</tr>
+				<tr>
+					<td><label for="player-tpctext">TPC text:</label></td>
+					<td><input type="text" id="player-tpctext" maxlength="32" onchange="currentPlayer.TPCtext.set(this.value)" /></td>
+				</tr>
+				<tr>
+					<td><label for="select-gender">Gender:</label></td>
+					<td><select id="select-gender"></select></td>
+				</tr>
+				<tr>
+					<td><label for="select-tan">Tan:</label></td>
+					<td><select id="select-tan"></select></td>
+				</tr>
+				<tr>
+					<td><label for="select-hairstyle">Hair style:</label></td>
+					<td><select id="select-hairstyle"></select> <span id="span-hair-style"></span></td>
+				</tr>
+				<tr>
+					<td><label for="select-haircolor">Hair color:</label></td>
+					<td><select id="select-haircolor"></select> <span id="span-hair-color"></span></td>
+				</tr>
+				<tr>
+					<td><label for="select-eyecolor">Eye color:</label></td>
+					<td><select id="select-eyecolor"></select> <span id="span-eye-color"></span></td>
+				</tr>
+				<tr>
+					<td><label for="select-face">Face:</label></td>
+					<td><select id="select-face"></select> <span id="span-face"></span></td>
+				</tr>
+				<tr>
+					<td>Playtime:</td>
+					<td><span id="player-playtime"></span></td>
+				</tr>
+				<tr>
+					<td>Birthday:</td>
+					<td><select id="select-birthday-day"></select> <select id="select-birthday-month"></select></td>
+				</tr>
+				<tr>
+					<td>Registration:</td>
+					<td><select id="select-registration-day"></select> <select id="select-registration-month"></select> <select id="select-registration-year"></select></td>
+				</tr>
+				<tr>
+					<td><label for="input-bells">Bells:</label></td>
+					<td><input type="text" id="input-bells"/></td>
+				</tr>
+				<tr>
+					<td><label for="input-bank">Bank:</label></td>
+					<td><input type="text" id="input-bank"/></td>
+				</tr>
+				<tr>
+					<td><label for="input-medals">Island medals:</label></td>
+					<td><input type="text" id="input-medals"/></td>
+				</tr>
+				<tr id="tr-meowcoupons">
+					<td><label for="input-meow">MEOW coupons:</label></td>
+					<td><input type="text" id="input-meow"/></td>
+				</tr>
+				<tr>
+					<td><label for="button-change-tpc">TPC Pic:</label></td>
+					<td><button id="button-change-tpc" onclick="changeTPCPic()">Change</button></td>
+				</tr>
+				<tr>
+					<td>Cheats:</td>
+					<td id="player-cheats">
+						<button onclick="currentPlayer.fillEncyclopedia()">Encyclopedia</button>
+						<button onclick="currentPlayer.unlockEmotions()">Emotions</button>
+						<button onclick="currentPlayer.fillCatalog()">Catalog</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="column column-7">
+			<h3 class="no-separation">Items</h3>
+
+			<div class="row">
+				<div class="column column-12" id="pockets">Pockets: </div>
+
+				<div class="column column-3" id="dresser0">Dresser A:<br/></div>
+				<div class="column column-3" id="dresser1">Dresser B:<br/></div>
+				<div class="column column-3" id="dresser2">Dresser C:<br/></div>
+				<div class="column column-3" id="islandbox">Island box:<br/></div>
+
+				<div class="column column-12" id="column-storage">Storage room:</div>
+				<div class="column column-3" id="storage0"></div>
+				<div class="column column-3" id="storage1"></div>
+				<div class="column column-3" id="storage2"></div>
+				<div class="column column-3" id="storage3"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<h3>House exterior</h3>
+		<div class="column column-5">
+			<table>
+				<tr><td><label for="select-house-style">House style:</label></td><td><select id="select-house-style"></select></td></tr>
+				<tr><td><label for="select-house-brick">House brick:</label></td><td><select id="select-house-brick"></select></td></tr>
+				<tr><td><label for="select-house-roof">House roof:</label></td><td><select id="select-house-roof"></select></td></tr>
+				<tr><td>House door:</td><td><select id="select-house-doorshape"></select> <select id="select-house-door"></select></td></tr>
+			</table>
+		</div>
+		<div class="column column-5">
+			<table>
+				<tr><td><label for="select-house-fence">House fence:</label></td><td><select id="select-house-fence"></select></td></tr>
+				<tr><td><label for="select-house-pavement">House pavement:</label></td><td><select id="select-house-pavement"></select></td></tr>
+				<tr><td><label for="select-house-mailbox">House mailbox:</label></td><td><select id="select-house-mailbox"></select></td></tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="column column-4">
+			<h3>Patterns</h3>
+			<div id="patterns0" class="player-patterns"></div>
+			<div id="patterns1" class="player-patterns"></div>
+			<div id="patterns2" class="player-patterns"></div>
+			<div id="patterns3" class="player-patterns"></div>
+		</div>
+		<div class="column column-7">
+			<h3>Badges</h3>
+			<ul id="badges"></ul>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="column column-5 room-container" id="rooms0">
+			<h3>Main room</h3>
+		</div>
+		<div class="column column-5 room-container" id="rooms1">
+			<h3>Attic</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="column column-5 room-container" id="rooms2">
+			<h3>Basement</h3>
+		</div>
+		<div class="column column-5 room-container" id="rooms3">
+			<h3>East room</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="column column-5 room-container" id="rooms4">
+			<h3>West room</h3>
+		</div>
+		<div class="column column-5 room-container" id="rooms5">
+			<h3>North room</h3>
+		</div>
+	</div>
+</div>
+
+
+<div id="tab-island" style="display:none">
+	<div id="map-island" class="map"></div>
+
+	<div class="row">
+		<div class="column column-5">
+			<h3>Acres</h3>
+			<div id="island-acres"></div><br/>
+			<button onclick="tempFileLoadFunction=importIsland; el('file-load').accept='.dat';el('file-load').click()">Import map</button>
+		</div>
+
+		<div class="column column-5">
+			<h3>Buildings</h3>
+			<ul id="buildings-island" class="building-list"></ul>
+		</div>
+	</div>
+
+</div>
+
+<div id="tab-shops" style="display:none">
+	<table>
+		<tr><td>Retail:</td><td><div id="shop-retail"></div></td></tr>
+		<tr><td>T&amp;T:</td><td><div id="shop-nook"></div></td></tr>
+		<tr><td>Gracie:</td><td><div id="shop-gracie"></div></td></tr>
+		<tr><td>Nook's homes:</td><td><div id="shop-homes"></div></td></tr>
+		<tr><td>Leif:</td><td><div id="shop-leif"></div></td></tr>
+		<tr><td>Able sisters (clothes):</td><td><div id="shop-able1"></div></td></tr>
+		<tr><td>Able sisters (accesories):</td><td><div id="shop-able2"></div></td></tr>
+		<tr><td>Able sisters (patterns):</td><td><div id="labelle" class="patterns-labelle"></div></td></tr>
+		<tr><td>Kicks:</td><td><div id="shop-kicks"></div></td></tr>
+		<tr><td>Redd:</td><td><div id="shop-redd"></div></td></tr>
+		<tr><td>Island shop:</td><td><div id="shop-island"></div></td></tr>
+		<tr><td>Museum shop:</td><td><div id="shop-museum"></div></td></tr>
+		<tr><td>Lost &amp; found:</td><td><div id="lostfound"></div></td></tr>
+		<tr><td>Club LOL gyroids:</td><td><div id="lol-gyroids"></div></td></tr>
+		<tr id="tr-shop-harvey"><td>Harvey:</td><td><div id="shop-harvey"></div></td></tr>
+		<tr>
+			<td>Turnip  prices:</td>
+			<td>
+				<table>
+					<tr><th></th><th>AM</th><th>PM</th></tr>
+					<tbody id="table-turnip-prices">
+						<tr><td>Monday</td></tr>
+						<tr><td>Tuesday</td></tr>
+						<tr><td>Wednesday</td></tr>
+						<tr><td>Thursday</td></tr>
+						<tr><td>Friday</td></tr>
+						<tr><td>Saturday</td></tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="tab-villagers" style="display:none">
+	<div class="row">
+		<h3 class="no-separation">Current villagers</h3>
+		<table id="villagers">
+			<tr><td></td><td></td><th>Wall</th><th>Floor</th><th>Song</th><th>Shirt</th><th>Umbrella</th><th>Furniture</th><th>Catchphrase</th></tr>
+		</table>
+	</div>
+
+	<div class="row">
+		<div class="column column-5">
+			<h3>Past villagers</h3>
+			<div class="row">
+				<div class="column column-6"><table id="past-villagers1"></table></div>
+				<div class="column column-6"><table id="past-villagers2"></table></div>
+			</div>
+			
+		</div>
+
+		<div class="column column-5" id="column-caravan">
+			<h3>Campsite &amp; caravans</h3>
+			<table id="caravan-villagers"></table>
+		</div>
+	</div>
+</div>
+
+<div id="tab-other" style="display:none">
+	<h3 class="no-separation">Town info</h3>
+	<div class="row">
+		<div class="column column-5">
+			<table>
+				<tr>
+					<td>Town name/SID:</td><td><div id="town-name"></div> <span id="town-id" class="mono"></span></td>
+				</tr>
+				<tr>
+					<td><label for="nativefruit">Native fruit:</label></td><td><select id="select-nativefruit"></select></td>
+				</tr>
+				<tr>
+					<td><label for="grasstype">Grass type:</label></td><td><select id="select-grasstype"></select></td>
+				</tr>
+				<tr>
+					<td><label for="grasstype">Grass type (island):</label></td><td><select id="select-grasstypeisland"></select></td>
+				</tr>
+				<tr>
+					<td><label for="townhallcolor">Town hall color:</label></td><td><select id="select-townhallcolor"></select></td>
+				</tr>
+				<tr>
+					<td><label for="trainstationcolor">Train station color:</label></td><td><select id="select-trainstationcolor"></select></td>
+				</tr>
+				<tr>
+					<td>Town ordinances</td>
+					<td>
+						<label for="checkbox-ordinance0"><input id="checkbox-ordinance0" type="checkbox" onchange="town.currentOrdinances[0]=this.checked;if(town.currentOrdinances[0] && town.currentOrdinances[1]){town.currentOrdinances[1]=false;el('checkbox-ordinance1').checked=false;}"/> Early bird</label><br/>
+						<label for="checkbox-ordinance1"><input id="checkbox-ordinance1" type="checkbox" onchange="town.currentOrdinances[1]=this.checked;if(town.currentOrdinances[0] && town.currentOrdinances[0]){town.currentOrdinances[0]=false;el('checkbox-ordinance0').checked=false;}"/> Night owl</label><br/>
+						<label for="checkbox-ordinance2"><input id="checkbox-ordinance2" type="checkbox" onchange="town.currentOrdinances[2]=this.checked"/> Bell boom</label><br/>
+						<label for="checkbox-ordinance3"><input id="checkbox-ordinance3" type="checkbox" onchange="town.currentOrdinances[3]=this.checked"/> Keep town beautiful</label>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="column column-5">
+			<table>
+				<tr>
+					<td><label for="towntreesize">Town tree size stage:</label></td><td><select id="select-towntreesize"></select></td>
+				</tr>
+				<tr>
+					<td>Playtime:</td><td><span id="town-playtime"></span><br/><span id="town-sessions"></span> days played</td>
+				</tr>
+				<tr>
+					<td>Secure value:</td><td><span id="nand-value" class="mono"></span></td>
+				</tr>
+				<tr id="town-unlockhhd">
+					<td><abbr title="Happy Home Designer">HHD</abbr> content:</td>
+					<td><button onclick="town.unlockHHDContent();">Unlock</button></td>
+				</tr>
+				<tr>
+					<td>Available PWPs:</td>
+					<td>
+						<ul id="pwps-available" class="binary-list"></ul>
+						<button onclick="town.availablePWPs.setAll(true)">Unlock all</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div id="museumroom0" class="column column-5 room-container">
+			<h3>Museum Room 1</h3>
+		</div>
+		<div id="museumroom2" class="column column-5 room-container">
+			<h3>Museum Room 3</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div id="museumroom1" class="column column-5 room-container">
+			<h3>Museum Room 2</h3>
+		</div>
+		<div id="museumroom3" class="column column-5 room-container">
+			<h3>Museum Room 4</h3>
+		</div>
+	</div>
+</div>
+
+
+
+
+</div>
+
+<!-- DIALOGS -->
+<div id="dialog-disclaimer" class="dialog">
+	<b>免責事項</b><br/><br/>
+	このエディダーを正しく使用しないとセーブデータの破損に繋がります。<br/>
+	失われたセーブデータについては、あなたが責任を負います。<br/>
+	常に編集する際は、セーブデータのバックアップを取っておいてください。
+	<div class="buttons">
+		<button class="red" onclick="acceptDisclaimer()">承認</button>
+	</div>
+</div>
+
+<div id="dialog-secure-value" class="dialog">
+	Secure NAND value determines if the <b>garden.dat</b> savegame will be valid for your console.<br/>
+	If you want to use an old savegame, you will need to update its secure NAND value using your most up-to-date garden.dat file.<br/>
+	<b class="warning">Warning!</b> Use this at your own risk.
+
+	<div class="buttons">
+		<button class="red" onclick="tempFileLoadFunction=changeSecureNANDValue; el('file-load').accept='.dat';el('file-load').click();MarcDialogs.close()">Update secure NAND value</button>
+		<button onclick="MarcDialogs.close()">Cancel</button>
+	</div>
+</div>
+
+<div id="dialog-maintenance" class="dialog">
+	<input type="checkbox" id="remove-weeds" checked="checked" /> <label for="remove-weeds">Remove weeds</label><br/>
+	<input type="checkbox" id="water-flowers" checked="checked" /> <label for="water-flowers">Water flowers</label><br/>
+	<input type="checkbox" id="perfectize-trees" /> <label for="perfectize-trees">Add a perfect fruit to trees</label>
+
+	<div class="buttons">
+		<button class="blue" onclick="acceptMaintenance()">Accept</button>
+		<button onclick="MarcDialogs.close()">Cancel</button>
+	</div>
+</div>
+
+<div id="dialog-importmap" class="dialog">
+	<input type="checkbox" id="import-acres" /> <label for="import-acres">Import acres</label><br/>
+	<input type="checkbox" id="import-items" /> <label for="import-items">Import items</label><br/>
+	<input type="checkbox" id="import-grass" /> <label for="import-grass">Import grass</label><br/>
+	<input type="checkbox" id="import-buildings" /> <label for="import-buildings">Import buildings <small>(may need manually fixing)</small></label>
+
+	<div class="buttons">
+		<button class="blue" onclick="acceptImportMap()">Accept</button>
+		<button onclick="MarcDialogs.close()">Cancel</button>
+	</div>
+</div>
+
+<div id="dialog-acre" class="dialog">
+	Select an acre to replace.<br/>
+	<b class="warning">Warning!</b> An invalid acre structure might freeze the game while booting. <a href="help.html#Warnings" class="help" target="_blank">More info</a>
+	<div id="acre-selector"></div>
+</div>
+
+<div id="dialog-pattern" class="dialog">
+	<img src="" id="pattern-preview"/><br/>
+	<span id="pattern-preview-title"></span>
+
+	<a href="https://www.thulinma.com/acnl/" target="_blank">Edit</a>
+	<div class="buttons">
+		<button onclick="el('file-load').accept='.acnl';el('file-load').click()">Import pattern</button>
+		<button onclick="currentEditingItem.export()">Export pattern</button>
+		<button id="button-pattern-steal" onclick="currentEditingItem.steal(currentPlayer)">Steal pattern</button>
+		<button onclick="MarcDialogs.close()">Cancel</button>
+	</div>
+</div>
+
+<div id="dialog-villager" class="dialog">
+	<label for="villager-new">New villager:</label> <select id="villager-new" onchange="el('villager-default').checked=true;refreshVillagerEdit();"></select> <span id="villager-pic"></span><br/>
+	Personality: <span id="villager-personality"></span><br/>
+	<div id="villager-current-options">
+		<input type="checkbox" id="villager-default"/> <label for="villager-default">Set villager data to default (catchphrase, clothes and furniture)</label><br/>
+		<input type="checkbox" id="villager-boxed"/> <label for="villager-boxed">Boxed (will move next day)</label><br/>
+	</div>
+
+	<div class="buttons">
+		<button class="blue" onclick="acceptVillagerEdit()">Accept</button>
+		<button onclick="MarcDialogs.close()">Cancel</button>
+	</div>
+</div>
+
+
+
+</body>
+</html>
 
 		<div class="block">
 			<label for="lang-selector">アイテムの言語選択:</label> <span id="lang-flag" class="sprite flag flag-en"></span>
