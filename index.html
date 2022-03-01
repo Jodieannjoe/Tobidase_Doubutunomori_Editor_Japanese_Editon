@@ -48,7 +48,7 @@
 		</div>
 
 		<div class="block">
-			<label for="lang-selector">Select item language:</label> <span id="lang-flag" class="sprite flag flag-en"></span>
+			<label for="lang-selector">アイテムの言語選択:</label> <span id="lang-flag" class="sprite flag flag-en"></span>
 			<select onchange="setCookie('lang',this.selectedIndex); updateLangIcon(this.selectedIndex)" id="lang-selector">
 				<option value="0" selected="selected">English</option>
 				<option value="enu">English (UK)</option>
@@ -56,14 +56,13 @@
 				<option value="de">Deutsch</option>
 				<option value="it">Italiano</option>
 				<option value="es">Español</option>
-				<option value="jp">Japanese</option>
 				<option value="kr">Korean</option>
 			</select>
 
 			<hr/>
-			<span id="loading">Loading editor, please wait...</span>
+			<span id="loading">エディダーをロードしています。少々お待ちください...</span>
 			<form id="loadform" style="display:none">
-				Open your <u>garden.dat</u> or <u>garden_plus.dat</u> file here:<br/>
+				<u>garden.dat</u>または<u>garden_plus.dat</u>ファイルを選択:<br/>
 				<input type="file" accept=".dat" onchange="loadSavegameFromFile(this.files[0])"/>
 			</form>
 		</div>
