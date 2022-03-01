@@ -75,31 +75,31 @@
 	<div id="itemsribbon">
 		<input type="text" id="search-input" onkeyup="searchItem(this.value)" onfocus="showSearchResults();" placeholder="Search item..." />
 		<ul id="search-results"></ul>
-		<label for="items">Current item:</label> <select id="items" onchange="buildFlagsSelects(0,0);"><option value="32766" id="item_32766">-</option><option value="32764" id="item_32764">- (occupied room tile) -</option><option value="32766" id="item_unk">unknown item</option></select>
-		<label for="flag1">Flag 1:</label>
+		<label for="items">現在のアイテム:</label> <select id="items" onchange="buildFlagsSelects(0,0);"><option value="32766" id="item_32766">-</option><option value="32764" id="item_32764">- (occupied room tile) -</option><option value="32766" id="item_unk">unknown item</option></select>
+		<label for="flag1">フラグ1:</label>
 		<input type="text" id="flag1" disabled="disabled" length="2" oninput="cleanFlagInput(1)" maxlength="2"/>
 		<select id="select-flag1" onchange="setFlag(1, parseInt(this.value))">
-			<option value="-1">custom</option>
-			<option value="0" selected="selected">none</option>
+			<option value="-1">カスタム</option>
+			<option value="0" selected="selected">なし</option>
 		</select>
-		<label for="flag2">Flag 2:</label>
+		<label for="flag2">フラグ2:</label>
 		<input type="text" id="flag2" disabled="disabled" length="2" oninput="cleanFlagInput(2)" maxlength="2" />
 		<select id="select-flag2" onchange="setFlag(2,parseInt(this.value))">
-			<option value="-1">custom</option>
-			<option value="0" selected="selected">none</option>
+			<option value="-1">カスタム</option>
+			<option value="0" selected="selected">なし</option>
 		</select>
 	</div>
 
 	<span class="logo"></span>
 	<div id="tab-selector">
-		<span class="active">Map</span>
-		<span>Players</span>
-		<span>Island</span>
-		<span>Villagers</span>
-		<span>Shops</span>
-		<span>Other</span>
+		<span class="active">マップ</span>
+		<span>プレイヤー</span>
+		<span>南の島</span>
+		<span>村人</span>
+		<span>ショップ</span>
+		<span>その他</span>
 	</div>
-	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span> Save changes</button>
+	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span>保存</button>
 </div>
 
 
