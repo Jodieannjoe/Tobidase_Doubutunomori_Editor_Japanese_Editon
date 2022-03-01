@@ -125,29 +125,29 @@
 
 	<br style="clear:both; display:block"/>
 	Options:
-	<button onclick="fillAll()">Fill all</button>
-	<button onclick="removeAll()">Remove all</button>
+	<button onclick="fillAll()">全て追加</button>
+	<button onclick="removeAll()">全て削除</button>
 	&nbsp;&nbsp;&nbsp;
-	<button onclick="MarcDialogs.open('maintenance')">Maintenance</button>
+	<button onclick="MarcDialogs.open('maintenance')">メンテナンス</button>
 	&nbsp;&nbsp;&nbsp;
-	<button onclick="tempFileLoadFunction=importMap; el('file-load').accept='.dat';el('file-load').click()">Import map</button>
+	<button onclick="tempFileLoadFunction=importMap; el('file-load').accept='.dat';el('file-load').click()">マップをインポート</button>
 
 	<div class="row">
 		<div class="column column-5">
-			<h3>Acres</h3>
+			<h3>土地を右クリックで変更</h3>
 			<div id="map-acres"></div>
 		</div>
 
 		<div class="column column-5">
-			<h3>Grass</h3>
+			<h3>草を左クリックで追加</h3>
 			<div id="grass-quads"></div>
-			<label>Pencil size: <select id="select-grass-pencil-size" onchange="grassPencilSize=this.selectedIndex">
+			<label>草の大きさ: <select id="select-grass-pencil-size" onchange="grassPencilSize=this.selectedIndex">
 				<option>1</option>
 				<option>2</option>
 				<option selected>3</option>
 				<option>4</option>
 			</select></label>
-			<label>Intensity: <select id="select-grass-intensity" onchange="grassPencilIntensity=((this.selectedIndex+1)*32)-1">
+			<label>強度: <select id="select-grass-intensity" onchange="grassPencilIntensity=((this.selectedIndex+1)*32)-1">
 				<option value="32">Min</option>
 				<option value="64">2</option>
 				<option value="96">3</option>
