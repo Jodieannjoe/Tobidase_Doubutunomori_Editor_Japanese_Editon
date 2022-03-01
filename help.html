@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Help - Animal Crossing: New Leaf Save Editor</title>
-	<link rel="shortcut icon" href="./data/favicon.png" />
+	<title>どうぶつの森セーブエディダー -ヘルプ</title>
+	<link rel="shortcut icon" href="https://www.marcrobledo.com/acnl-editor/resources/favicon.png" />
 	<meta http-equiv="content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 	<meta name="description" content="An Animal Crossing: New Leaf town and items editor." />
@@ -68,43 +68,43 @@ hr{border: none; border-bottom: 1px dotted #8795a1; margin: 60px 0}
 --></style>
 </head>
 <body><div id="wrapper">
-<h1>Animal Crossing: New Leaf Save Editor</h1>
+<h1>どうぶつの森セーブエディダー</h1>
 
-<a href="./">Animal Crossing: New Leaf Save Editor</a> lets you edit your Animal Crossing: New Leaf savegame.<br/>
-<b>Features:</b>
+
+<a href="./">どうぶつの森セーブエディダー</a>どうぶつの森セーブエディダーはセーブデータを編集できます。<br/>
+<b>機能:</b>
 
 
 <ul>
-	<li>can edit any ACNL savegame (including Welcome Amiibo)</li>
+	<li>ACNLセーブデータ（Welcome Amiiboを含む）を編集できます</li>
 	<li>
-		can edit your town
+		あなたの町を編集することができます
 		<ul>
-			<li>acres, river, waterfalls and ponds</li>
-			<li>name, town hall and train station roof colors</li>
-			<li>move buildings, houses, rocks and more at your own</li>
+<li>土地、川、滝、池</ li>
+<li>名前、市庁舎、駅の屋根の色</ li>
+<li>建物、家、岩などを自分で移動させれる</ li>
 		</ul>
-	</li>
-	<li>can edit your player characters (name, face and gender, TPC pic, inventory and rooms)</li>
-	<li>can edit your villagers (animals, campsite and caravan zone)</li>
-	<li>other cool things
+	</li><li>プレイヤーキャラクター（名前、顔、性別、TPC写真、在庫、部屋）を編集できます</ li>
+<li>村人（動物、キャンプ場、キャラバンゾーン）を編集できます</ li>
+<li>その他のクールなもの
 		<ul>
-			<li>put all perfect fruit trees in your town</li>
-			<li>put both police stations in your town</li>
-			<li>put anything in the beach, the river or the island</li>
-			<li>put various plaza tree anywhere</li>
-			<li>let Holden/Filly join your town</li>
-			<li>get a tan even in winter</li>
-			<li>change ground grass shape</li>
-			<li>place unused players' patterns on ground</li>
-			<li>...and more!</li>
+<li>あなたの町に完璧な果樹をすべて置いてください</ li>
+<li>両方の警察署をあなたの町に置いてください</ li>
+<li>ビーチ、川、島に何でも入れてください</ li>
+<li>さまざまな広場の木をどこにでも置く</ li>
+<li>NPCをあなたの町に参加させましょう</ li>
+<li>冬でも日焼けする</ li>
+<li>地面の草の形を変える</ li>
+<li>未使用のプレーヤーのパターンを地面に置きます</ li>
+<li> ...その他！</ li>
 		</ul>
 	</li>
 </ul>
-Please read the <a href="#Howto">Instructions</a> and the <a href="#FAQ">FAQ</a> carefully.<br/><br/>
+Please read the <a href="#Howto">手順</a>それと<a href="#FAQ">FAQ</a>気をつけること<br/><br/>
 
 <div class="warning">
-	This app can damage your savegame if not used correctly. I'm not responsible of any data lost.<br/>
-	Be careful when editing your savegame, always keep backups of your savegame.
+このツールは自己責任で使用してください。<br/>
+このツールを使用してデータが破損しても責任は負いません。
 </div>
 
 
@@ -112,44 +112,42 @@ Please read the <a href="#Howto">Instructions</a> and the <a href="#FAQ">FAQ</a>
 <hr />
 
 
-<h2 id="Howto">How to dump and inject AC:NL savegame</h2>
+<h2 id="Howto">AC：NLセーブデータをダンプして注入する方法</h2>
 <h3>Requirements</h3>
 <ul>
-	<li>a hacked Nintendo 3DS/XL, New Nintendo 3DS/XL, Nintendo 2DS or New Nintendo 2DS XL</li>
-	<li>retail/digital version of AC:NL with or without Welcome amiibo update</li>
-	<li>an updated web browser (recommended: <a href="http://www.mozilla.com">Firefox</a>)</li>
+	<li>改造したニンテンドー3DS/XL,Newニンテンドー3DS/XL,ニンテンドー2DS,またはNewニンテンドー2DS XL</li>
+	<li>Welcome amiiboアップデートの有無にかかわらずAC：NLの小売/デジタルバージョン</li>
+	<li>更新されたWebブラウザ (推奨: <a href="http://www.mozilla.com">Firefox</a>)</li>
 </ul>
 
 
 
-<h3>Hack your 3DS</h3>
-Follow <a href="https://3ds.hacks.guide/" target="_blank">this guide</a> in order to hack your 3DS. This is a necessary step. You will only need to do this once.<br/><br/>
-The guide above will install a CFW (along <a href="https://github.com/FlagBrew/Checkpoint/" target="_blank">Checkpoint</a>) that allows to run unsigned code in your 3DS. This will allow us to run <a href="https://github.com/FlagBrew/Checkpoint/" target="_blank">Checkpoint</a>, which is a simple program that can extract AC:NL (and other games aswell) savegame then reinsert it after being edited with the editor.
+<h3>3DSを改造する方法</h3>
+<a href="https://3ds.hacks.guide/" target="_blank">ガイド</a> ではあなたの3DSを改造するための事が書かれています。<br/><br/>
 
 
-
-<h3>Extract savegame</h3>
+<h3>セーブデータを抽出する方法</h3>
 <ol>
-	<li>Open <strong>Homebrew Launcher</strong></li>
-	<li>Open <strong>Checkpoint</strong></li>
-	<li>Choose <strong>AC:NL icon</strong> and press A</li>
-	<li>Choose <strong>Backup (L)</strong> and type a name for the savegame backup</li>
-	<li>Power down the console, take out the SD card and put in the PC</li>
+<li> <strong>3DSを開く</strong> </li>
+<li> <strong>CheckPoint</strong></li>を開きます
+<li> <strong> AC：NLアイコン</strong>を選択し、Aを押します</li>
+<li> <strong>バックアップ（L）</strong>を選択し、セーブゲームのバックアップの名前を入力します</li>
+<li>コンソールの電源を切り、SDカードを取り出して、PCに挿入します</li>
 </ol>
 
 
 
-<h3>Insert savegame</h3>
+<h3>セーブデータを挿入</h3>
 <ol>
-	<li>Browse your SD card and make a backup of <strong>/3DS/Checkpoint/saves/Animal Crossing New Leaf/[your_savegame_name]/</strong> entire folder</li>
-	<li>Open <strong>/3DS/Checkpoint/saves/Animal Crossing New Leaf/[your_savegame_name]/garden.dat (or garden_plus.dat)</strong> file with <a href="./">AC:NL Save Editor</a> and edit it to your desire</li>
-	<li>Save the edited town as <b>/3DS/Checkpoint/saves/Animal Crossing New Leaf/[your_savegame_name]/garden.dat (or garden_plus.dat)</b> in the SD <small>(make sure you are overwriting the original file and not creating a copy)</small></li>
-	<li>Insert the SD card in the console</li>
-	<li>Open <strong>Homebrew Launcher</strong></li>
-	<li>Open <strong>Checkpoint</strong></li>
-	<li>Choose <strong>AC:NL icon</strong> and press A</li>
-	<li>Choose <strong>Restore (R)</strong> and select [your_savegame_name] folder</li>
-	<li>Run AC:NL and get ingame, your changes should be there!</li>
+<li> SDカードを参照し、<strong>/3DS/Checkpoint/saves/AnimalCrossing/[自分のセーブデータの名前]/ </strong>フォルダ全体のバックアップを作成します</li>
+<li> <a href="./"> AC：NLで<strong>/3DS/Checkpoint/saves/Animal Crossing/[自分のセーブデータの名前]/garden.dat（またはgarden_plus.dat）</strong>をエディタで編集</a>して、自分の好みの町にする、したら保存をする。(その後、編集したデータがダウンロードされます。)</li>
+<li>編集したデータをSD <small>に<b>/3DS/Checkpoint/saves/ Animal Crossing/[自分のセーブデータの名前]/garden.dat（またはgarden_plus.dat）</b>に上書きする</small> </li>
+<li>3DSにSDカードを挿入します</ li>
+<li> <strong>3DSを起動する。</strong> </li>
+<li> <strong>CheckPoint</strong> </li>を開きます
+<li> <strong> AC：NLアイコン</strong>を選択し、Aを押します</li>
+<li> <strong>復元（R）</strong>を選択し、[自分のセーブデータの名前]を選択します</li>
+<li> AC：NLを実行してゲーム内に入ると、変更が反映されたら成功です。</li>
 </ol>
 
 
@@ -233,85 +231,84 @@ Also, do not inject a RAM that was dumped using another player. Always inject on
 <!-- <h3>I cannot play online because the console asks for an update, and I don't want to lose my homebrew entrypoint. Can I play online?</h3>
 Yes, use <a href="http://gbatemp.net/threads/httpwn-bypass-system-update-blocks.420041" target="_blank">HTTPwn</a>.<br/> -->
 
-<h3>Will I be banned if I play online with a hacked savegame?</h3>
-Yes, you might be banned from online functions if you change your TPC pic and use the Club Tortimer.<br/>
+<h3>編集したセーブデータでオンラインをプレイした場合、BANされますか？</h3>
+BANされる可能性があります。TPC写真を利用すると可能性が高まります。<br/>
 
-<h3>How can I rotate furniture in rooms?</h3>
-Right click on the desired furniture then left click to rotate it.
+<h3>部屋の家具を回転させるにはどうすればよいですか？</h3>
+目的の家具を右クリックや左クリックして回転させれます。
 
-<h3>How can I place perfect fruit trees?</h3>
-Select the desired tree in the Current item dropdown menu, then choose Perfect 4 in the Flag 1 dropdown menu. You can even put non-native perfect fruit trees!<br/>
-You can also place rare mixed perfect fruit trees (2 normal fruit+1 perfect fruit). Right click on any of your normal fruit trees in your town, choose 0x01 mixed perfect in the Flag 2 dropdown menu then overwrite it in the map (or whever you want to place it).
+<h3>完璧な果樹を配置するにはどうすればよいですか？(日本語が登録されていません。)</h3>
+[現在のアイテム]ドロップダウンメニューで目的のツリーを選択し、[フラグ1]ドロップダウンメニューで[パーフェクト4]を選択します。 非在来種の完璧な果樹を置くこともできます！<br/>
+珍しいミックスパーフェクトフルーツツリーを配置することもできます（2つの通常のフルーツ+1パーフェクトフルーツ）。 町にある通常の果樹のいずれかを右クリックし、[フラグ2]ドロップダウンメニューで[0x01ミックスパーフェクト]を選択して、マップ（または配置する場所）で上書きします。
 
 <!-- <h3>Can I add new buildings with the editor?</h3>
 No. The option was disabled since it lead to some glitches at a later point.
 It's better to let the game do it by itself. Just add any new PWP (street lamp, for example) in-game with Isabelle, pay it, then wait for the next day so you can edit it in the editor. -->
 
-<h3>I've injected Holden/Filly RVs, but they do not ask me to come to the town.</h3>
-Both Holden and Filly are RV locked, so they cannot come to your town as villagers legally.<br/>
-The only way to have Holden/Filly as villagers is to inject them directly into your town into an existing villager.
+<h3>NPCを注入しましたが、町に来ません。</h3>
+NPCはどちらもRVロックされているため、村人として合法的にあなたの町に来ることはできません。<br/>
+NPCを村人として持つ唯一の方法は、NPCをあなたの町の既存の村人に直接注入することです。
 
-<h3>Your editor glitched my savegame!</h3>
-No. It wasn't my editor, it was you.<br/>
-The editor can do cool things, but it's also a dangerous tool and you are the only responsible while using it. Keep always a backup of your previous savegame.<br/>
-If you think you've found a bug, post your feedback <a href="https://gbatemp.net/threads/animal-crossing-new-leaf-save-editor.382965" target="_blank">here</a>.
+<h3>あなたの編集者は私のセーブデータをグリッチしました！</h3>
+いいえ、それは私の編集者ではなく、あなたです。<br/>
+エディターはクールなことをすることができますが、それは危険なツールでもあり、それを使用している間はあなただけが責任を負います。 セーブデータのバックアップを常に保管してください。<br/>
+バグを見つけたと思われる場合は、フィードバックを<ahref = "https://gbatemp.net/threads/animal-crossing-new-leaf-save-editor.382965" target = "_blank">ここに投稿してください</a>。
 
-<h3>Can I create building seeds like Wild World?</h3>
-No.
+<h3>ワイルドワールドのような建物の種を作成できますか？</ h3>
+いいえ。
 
-<h3 id="Warnings">What can I do to ensure my savegame does not get glitched?</h3>
+<h3 id = "Warnings">セーブデータに不具合が発生しないようにするにはどうすればよいですか？</h3>
 <ul>
-	<li>
-		<b>there must be at least a pond, </b>
-	</li>
+<li>
+<b>少なくとも池が必要です</b>
+</li>
 
-	<li>
-		<b>there must be two waterfalls (wall and sea), </b>
-	</li>
+<li>
+<b> 2つの滝（壁と海）が必要です。</b>
+</li>
 
-	<li>
-		<b>there must be a town plaza acre, </b>
-	</li>
+<li>
+<b>町の広場の木が必要です</ b>
+</li>
 
-	<li>
-		<b>there must be two slopes: </b> you can move them carefully using the acre editor
-	</li>
+<li>
+<b>2つの傾斜が必要です：</b>木を成長させる機能があるのでそこで成長させてください。
+</li>
 
-	<li>
-		<b>do not do weird things with the acre editor: </b> try to keep a valid acre structure
-	</li>
+<li>
+<b>木を成長させる機能で奇妙なことをしないでください：</b>有効な木の構造を維持するようにしてください
+</li>
 
-	<li>
-		<b>keep at least two rocks: </b> move them using the map editor if you need it <small>(use right click to 'copy' the rock, place it anywhere then delete the original one)</small>
-	</li>
+<li>
+<b>少なくとも2つの岩を保持します：</b>必要に応じてマップエディタを使用してそれらを移動します<small>（右クリックして岩を「コピー」し、任意の場所に配置してから元の岩を削除します）</small>
+</li>
 
-	<li>
-		<b>keep enough free space for buildings in the town plaza acre: </b> the game will freeze whenever special visitors (Redd, Gracie, Katrina...) try to put their tents there and there is not enough space
-	</li>
+<li>
+<b>町の広場の木に建物のための十分な空きスペースを確保する：</b>特別な訪問者（Redd、Gracie、Katrina ...）がテントをそこに置こうとし、十分なスペースがない場合、ゲームはフリーズします
+</li>
 
-	<li>
-		<b>be careful when moving any building: </b> you can adjust building placements with the editor, but don't do weird things like placing houses in the water
-	</li>
+<li>
+<b>建物を移動するときは注意してください：</b>エディタを使用して建物の配置を調整できますが、家を水中に配置するなどの行為はしないでください
+</li>
 </ul>
 
 
-<h3>The game says my savegame data is corrupted. What happened? Can I restore my savegame?</h3>
-That means you injected an old savegame, and the game blocked it using an anti-cheat protection system.<br/><br/>
+<h3>ゲームは私のセーブデータが壊れていると言っています。セーブゲームを復元できますか？</ h3>
+つまり、古いセーブゲームを挿入し、ゲームがアンチチート保護システムを使用してそれをブロックしたことを意味します。<br/> <br/>
 
-Do not worry, you can still restore it. You will need to update its secure NAND value.
+心配しないでください、あなたはデータを復元することができます。安全なNAND値を更新する必要があります。
 <ol>
-	<li><b>Make a backup of your old savegame you want to restore</b></li>
-	<li>Restart your game and save. Make a dump of this new AC:NL savegame.</li>
-	<li>Open the <b>old</b> garden.dat/garden_plus.dat savegame in the editor</li>
-	<li>Go to the Other tab, click on the pencil next to Secure Value and load the <b>newest</b> garden.dat/garden_plus.dat here.<br/>
-	That will turn your old savegame into a valid savegame for the console.</li>
+<li> <b>復元する古いセーブデータのバックアップを作成します</b> </li>
+<li>ゲームを再開して保存します。この新しいAC：NLセーブゲームのダンプを作成します。</ li>
+<li>エディターで<b>古い</b> garden.dat / garden_plus.datセーブデータを開きます</ li>
+<li> [その他]タブに移動し、[セキュリティで保護された値]の横にある鉛筆をクリックして、<b>最新</b>のgarden.dat / garden_plus.datをここに読み込みます。<br/>
+これにより、古いセーブゲームがコンソールの有効なセーブデータに変わります。</ li>
 </ol>
-<!-- Alternatively you can use <span class="app-icon purple"></span> svdt which updates the NAND value for you. -->
 
-<h3>What happened to the RAM hacking method?</h3>
-Support for RAM method has been dropped for Welcome amiibo update. And <b>it will never be back</b>, sorry.<br/>
-The reason is that the RAM method was only available for some outdated consoles. The amiibo update requires the console firmware to be on 11.x, which automatically kills the browser exploit that allows the AC:NL RAM hacking method.<br/><br/>
-Basically, Nintendo killed the RAM hacking method unintentionally.
+<h3> RAMハッキング方法はどうなりましたか？</ h3>
+WelcomeamiiboアップデートのRAMメソッドのサポートは終了しました。そして、<b>二度と戻ってこない</b>、ごめんなさい。<br/>
+その理由は、RAM方式が一部の古いコンソールでしか利用できなかったためです。 amiiboのアップデートでは、コンソールファームウェアが11.xである必要があります。これにより、AC：NL NAMハッキング方法を可能にするブラウザエクスプロイトが自動的に強制終了されます。<br/> <br/>
+基本的に、任天堂は意図せずにRAMハッキング方法をなくしました。
 
 <!-- <h3>Can I inject an old acnlram.bin / gardenram.dat savegame?</h3>
 Yes, but only if you haven't updated to Welcome amiibo.<br/>
