@@ -56,6 +56,7 @@
 				<option value="de">Deutsch</option>
 				<option value="it">Italiano</option>
 				<option value="es">Español</option>
+				<option value="jp">日本語</option>
 				<option value="kr">Korean</option>
 			</select>
 
@@ -92,16 +93,15 @@
 
 	<span class="logo"></span>
 	<div id="tab-selector">
-		<span class="active">マップ</span>
-		<span>プレイヤー</span>
-		<span>南の島</span>
-		<span>村人</span>
+		<span class="active">Map</span>
+		<span>Players</span>
+		<span>Island</span>
+		<span>Villagers</span>
 		<span>Shops</span>
-		<span>その他</span>
+		<span>Other</span>
 	</div>
-	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span>保存</button>
+	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span> データ保存</button>
 </div>
-
 
 
 <form id="file-form" class="hidden"><input type="file" id="file-load" onchange="tempFile=new MarcFile(this.files[0], tempFileLoadFunction), el('file-form').reset();"/></form>
@@ -525,20 +525,20 @@
 </div>
 
 <div id="dialog-importmap" class="dialog">
-	<input type="checkbox" id="import-acres" /> <label for="import-acres">Import acres</label><br/>
-	<input type="checkbox" id="import-items" /> <label for="import-items">Import items</label><br/>
-	<input type="checkbox" id="import-grass" /> <label for="import-grass">Import grass</label><br/>
-	<input type="checkbox" id="import-buildings" /> <label for="import-buildings">Import buildings <small>(may need manually fixing)</small></label>
+	<input type="checkbox" id="import-acres" /> <label for="import-acres">地形をインポート</label><br/>
+	<input type="checkbox" id="import-items" /> <label for="import-items">アイテムをインポート</label><br/>
+	<input type="checkbox" id="import-grass" /> <label for="import-grass">草をインポート</label><br/>
+	<input type="checkbox" id="import-buildings" /> <label for="import-buildings">建物をインポート<small>(may need manually fixing)</small></label>
 
 	<div class="buttons">
-		<button class="blue" onclick="acceptImportMap()">Accept</button>
-		<button onclick="MarcDialogs.close()">Cancel</button>
+		<button class="blue" onclick="acceptImportMap()">確認</button>
+		<button onclick="MarcDialogs.close()">キャンセル</button>
 	</div>
 </div>
 
 <div id="dialog-acre" class="dialog">
-	Select an acre to replace.<br/>
-	<b class="warning">Warning!</b> An invalid acre structure might freeze the game while booting. <a href="help.html#Warnings" class="help" target="_blank">More info</a>
+	交換する地形を選択してください。<br/>
+	<b class="warning">警告!</b> 無効な地形の構造は、起動中にゲームをフリーズさせる可能性があります。 <a href="help.html#Warnings" class="help" target="_blank">詳しく</a>
 	<div id="acre-selector"></div>
 </div>
 
@@ -551,7 +551,7 @@
 		<button onclick="el('file-load').accept='.acnl';el('file-load').click()">Import pattern</button>
 		<button onclick="currentEditingItem.export()">Export pattern</button>
 		<button id="button-pattern-steal" onclick="currentEditingItem.steal(currentPlayer)">Steal pattern</button>
-		<button onclick="MarcDialogs.close()">Cancel</button>
+		<button onclick="MarcDialogs.close()">キャンセル</button>
 	</div>
 </div>
 
