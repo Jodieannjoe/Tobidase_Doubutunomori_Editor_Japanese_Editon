@@ -96,7 +96,7 @@
 		<span>プレイヤー</span>
 		<span>南の島</span>
 		<span>村人</span>
-		<span>ショップ</span>
+		<span>Shops</span>
 		<span>その他</span>
 	</div>
 	<button id="save-button" onclick="saveChanges()"><span class="sprite save-icon"></span>保存</button>
@@ -115,7 +115,7 @@
 
 
 
-<div id="tab-マップ">
+<div id="tab-map">
 	<div style="float:right;width:360px">
 		<h3 class="no-separation">建物</h3>
 		<ul id="buildings" class="building-list"></ul>
@@ -124,7 +124,7 @@
 	<div id="map-map" class="map"></div>
 
 	<br style="clear:both; display:block"/>
-	Options:
+        オプション:
 	<button onclick="fillAll()">全て追加</button>
 	<button onclick="removeAll()">全て削除</button>
 	&nbsp;&nbsp;&nbsp;
@@ -134,7 +134,7 @@
 
 	<div class="row">
 		<div class="column column-5">
-			<h3>地形を右クリックで変更</h3>
+			<h3>地形を左クリックで変更</h3>
 			<div id="map-acres"></div>
 		</div>
 
@@ -564,8 +564,8 @@
 	</div>
 
 	<div class="buttons">
-		<button class="blue" onclick="acceptVillagerEdit()">Accept</button>
-		<button onclick="MarcDialogs.close()">Cancel</button>
+		<button class="blue" onclick="acceptVillagerEdit()">確認</button>
+		<button onclick="MarcDialogs.close()">キャンセル</button>
 	</div>
 </div>
 
