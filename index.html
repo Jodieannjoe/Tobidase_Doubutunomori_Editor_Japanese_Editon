@@ -115,11 +115,11 @@
 
 
 
-<div id="tab-map">
+<div id="tab-マップ">
 	<div style="float:right;width:360px">
-		<h3 class="no-separation">Buildings</h3>
+		<h3 class="no-separation">建物</h3>
 		<ul id="buildings" class="building-list"></ul>
-		<div class="text-center"><button onclick="addBuilding()">Add building</button></div>
+		<div class="text-center"><button onclick="addBuilding()">建物を追加</button></div>
 	</div>
 	<div id="map-map" class="map"></div>
 
@@ -134,7 +134,7 @@
 
 	<div class="row">
 		<div class="column column-5">
-			<h3>土地を右クリックで変更</h3>
+			<h3>地形を右クリックで変更</h3>
 			<div id="map-acres"></div>
 		</div>
 
@@ -148,14 +148,14 @@
 				<option>4</option>
 			</select></label>
 			<label>強度: <select id="select-grass-intensity" onchange="grassPencilIntensity=((this.selectedIndex+1)*32)-1">
-				<option value="32">Min</option>
+				<option value="32">ミニ</option>
 				<option value="64">2</option>
 				<option value="96">3</option>
 				<option value="128">4</option>
 				<option value="160">5</option>
 				<option value="192">6</option>
 				<option value="224">7</option>
-				<option value="255" selected>Max</option>
+				<option value="255" selected>マックス</option>
 			</select></label>
 		</div>
 	</div>
